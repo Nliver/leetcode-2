@@ -57,6 +57,16 @@
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-F887EV7L8E"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-F887EV7L8E",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-F887EV7L8E",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -92271,65 +92281,65 @@ s 中没有子串长度为 16 并且等于 words 的任何顺序排列的连接�
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="x">class Solution {</span>
-<span class="x">    /**</span>
-<span class="x">     * @param String $s</span>
-<span class="x">     * @param String[] $words</span>
-<span class="x">     * @return Integer[]</span>
-<span class="x">     */</span>
-<span class="x">    function findSubstring($s, $words) {</span>
-<span class="x">        $cnt = [];</span>
-<span class="x">        foreach ($words as $w) {</span>
-<span class="x">            if (isset($cnt[$w])) {</span>
-<span class="x">                $cnt[$w]++;</span>
-<span class="x">            } else {</span>
-<span class="x">                $cnt[$w] = 1;</span>
-<span class="x">            }</span>
-<span class="x">        }</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @param String $s</span>
+<span class="sd">     * @param String[] $words</span>
+<span class="sd">     * @return Integer[]</span>
+<span class="sd">     */</span>
+    <span class="k">function</span> <span class="nf">findSubstring</span><span class="p">(</span><span class="nv">$s</span><span class="p">,</span> <span class="nv">$words</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$cnt</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$words</span> <span class="k">as</span> <span class="nv">$w</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$cnt</span><span class="p">[</span><span class="nv">$w</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="nv">$cnt</span><span class="p">[</span><span class="nv">$w</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nv">$cnt</span><span class="p">[</span><span class="nv">$w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
 
-<span class="x">        $ans = [];</span>
-<span class="x">        $m = strlen($s);</span>
-<span class="x">        $n = count($words);</span>
-<span class="x">        $k = strlen($words[0]);</span>
+        <span class="nv">$ans</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="nv">$m</span> <span class="o">=</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$s</span><span class="p">);</span>
+        <span class="nv">$n</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$words</span><span class="p">);</span>
+        <span class="nv">$k</span> <span class="o">=</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$words</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
 
-<span class="x">        for ($i = 0; $i &lt; $k; $i++) {</span>
-<span class="x">            $l = $i;</span>
-<span class="x">            $r = $i;</span>
-<span class="x">            $cnt1 = [];</span>
-<span class="x">            while ($r + $k &lt;= $m) {</span>
-<span class="x">                $t = substr($s, $r, $k);</span>
-<span class="x">                $r += $k;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$k</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$l</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
+            <span class="nv">$r</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
+            <span class="nv">$cnt1</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nv">$r</span> <span class="o">+</span> <span class="nv">$k</span> <span class="o">&lt;=</span> <span class="nv">$m</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$t</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$s</span><span class="p">,</span> <span class="nv">$r</span><span class="p">,</span> <span class="nv">$k</span><span class="p">);</span>
+                <span class="nv">$r</span> <span class="o">+=</span> <span class="nv">$k</span><span class="p">;</span>
 
-<span class="x">                if (!isset($cnt[$t])) {</span>
-<span class="x">                    $cnt1 = [];</span>
-<span class="x">                    $l = $r;</span>
-<span class="x">                    continue;</span>
-<span class="x">                }</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$cnt</span><span class="p">[</span><span class="nv">$t</span><span class="p">]))</span> <span class="p">{</span>
+                    <span class="nv">$cnt1</span> <span class="o">=</span> <span class="p">[];</span>
+                    <span class="nv">$l</span> <span class="o">=</span> <span class="nv">$r</span><span class="p">;</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="p">}</span>
 
-<span class="x">                if (isset($cnt1[$t])) {</span>
-<span class="x">                    $cnt1[$t]++;</span>
-<span class="x">                } else {</span>
-<span class="x">                    $cnt1[$t] = 1;</span>
-<span class="x">                }</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$t</span><span class="p">]))</span> <span class="p">{</span>
+                    <span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$t</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
 
-<span class="x">                while ($cnt1[$t] &gt; $cnt[$t]) {</span>
-<span class="x">                    $w = substr($s, $l, $k);</span>
-<span class="x">                    $cnt1[$w]--;</span>
-<span class="x">                    if ($cnt1[$w] == 0) {</span>
-<span class="x">                        unset($cnt1[$w]);</span>
-<span class="x">                    }</span>
-<span class="x">                    $l += $k;</span>
-<span class="x">                }</span>
+                <span class="k">while</span> <span class="p">(</span><span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$t</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nv">$cnt</span><span class="p">[</span><span class="nv">$t</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nv">$w</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$s</span><span class="p">,</span> <span class="nv">$l</span><span class="p">,</span> <span class="nv">$k</span><span class="p">);</span>
+                    <span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$w</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$w</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nb">unset</span><span class="p">(</span><span class="nv">$cnt1</span><span class="p">[</span><span class="nv">$w</span><span class="p">]);</span>
+                    <span class="p">}</span>
+                    <span class="nv">$l</span> <span class="o">+=</span> <span class="nv">$k</span><span class="p">;</span>
+                <span class="p">}</span>
 
-<span class="x">                if ($r - $l == $n * $k) {</span>
-<span class="x">                    $ans[] = $l;</span>
-<span class="x">                }</span>
-<span class="x">            }</span>
-<span class="x">        }</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$r</span> <span class="o">-</span> <span class="nv">$l</span> <span class="o">==</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nv">$k</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$ans</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$l</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
 
-<span class="x">        return $ans;</span>
-<span class="x">    }</span>
-<span class="x">}</span>
+        <span class="k">return</span> <span class="nv">$ans</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 </div>
 </div>
@@ -92389,7 +92399,49 @@ s 中没有子串长度为 16 并且等于 words 的任何顺序排列的连接�
   </aside>
 
 
+  
 
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面对您有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="此页面对我有帮助" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="此页面需要改进" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              感谢您的反馈！
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              感谢您的反馈！请帮助我们改进此页面。
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
 
 
 <h2 id="__comments">评论</h2>

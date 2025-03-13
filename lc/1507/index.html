@@ -57,6 +57,16 @@
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-F887EV7L8E"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-F887EV7L8E",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-F887EV7L8E",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -91862,36 +91872,36 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="x">class Solution {</span>
-<span class="x">    /**</span>
-<span class="x">     * @param String $date</span>
-<span class="x">     * @return String</span>
-<span class="x">     */</span>
-<span class="x">    function reformatDate($date) {</span>
-<span class="x">        $arr = explode(&#39; &#39;, $date);</span>
-<span class="x">        $months = [</span>
-<span class="x">            &#39;Jan&#39; =&gt; &#39;01&#39;,</span>
-<span class="x">            &#39;Feb&#39; =&gt; &#39;02&#39;,</span>
-<span class="x">            &#39;Mar&#39; =&gt; &#39;03&#39;,</span>
-<span class="x">            &#39;Apr&#39; =&gt; &#39;04&#39;,</span>
-<span class="x">            &#39;May&#39; =&gt; &#39;05&#39;,</span>
-<span class="x">            &#39;Jun&#39; =&gt; &#39;06&#39;,</span>
-<span class="x">            &#39;Jul&#39; =&gt; &#39;07&#39;,</span>
-<span class="x">            &#39;Aug&#39; =&gt; &#39;08&#39;,</span>
-<span class="x">            &#39;Sep&#39; =&gt; &#39;09&#39;,</span>
-<span class="x">            &#39;Oct&#39; =&gt; &#39;10&#39;,</span>
-<span class="x">            &#39;Nov&#39; =&gt; &#39;11&#39;,</span>
-<span class="x">            &#39;Dec&#39; =&gt; &#39;12&#39;,</span>
-<span class="x">        ];</span>
-<span class="x">        $year = $arr[2];</span>
-<span class="x">        $month = $months[$arr[1]];</span>
-<span class="x">        $day = intval($arr[0]);</span>
-<span class="x">        if ($day &gt; 0 &amp;&amp; $day &lt; 10) {</span>
-<span class="x">            $day = &#39;0&#39; . $day;</span>
-<span class="x">        }</span>
-<span class="x">        return $year . &#39;-&#39; . $month . &#39;-&#39; . $day;</span>
-<span class="x">    }</span>
-<span class="x">}</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @param String $date</span>
+<span class="sd">     * @return String</span>
+<span class="sd">     */</span>
+    <span class="k">function</span> <span class="nf">reformatDate</span><span class="p">(</span><span class="nv">$date</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$arr</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$date</span><span class="p">);</span>
+        <span class="nv">$months</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;Jan&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;01&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Feb&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Mar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Apr&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;May&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Jun&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Jul&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;07&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Aug&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;08&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Sep&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;09&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Oct&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Nov&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Dec&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
+        <span class="nv">$year</span> <span class="o">=</span> <span class="nv">$arr</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="nv">$month</span> <span class="o">=</span> <span class="nv">$months</span><span class="p">[</span><span class="nv">$arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]];</span>
+        <span class="nv">$day</span> <span class="o">=</span> <span class="nb">intval</span><span class="p">(</span><span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$day</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nv">$day</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$day</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">.</span> <span class="nv">$day</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$year</span> <span class="o">.</span> <span class="s1">&#39;-&#39;</span> <span class="o">.</span> <span class="nv">$month</span> <span class="o">.</span> <span class="s1">&#39;-&#39;</span> <span class="o">.</span> <span class="nv">$day</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 </div>
 </div>
@@ -91956,7 +91966,49 @@
   </aside>
 
 
+  
 
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面对您有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="此页面对我有帮助" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="此页面需要改进" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              感谢您的反馈！
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              感谢您的反馈！请帮助我们改进此页面。
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
 
 
 <h2 id="__comments">评论</h2>
