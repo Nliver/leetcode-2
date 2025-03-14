@@ -13661,7 +13661,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      方法一
+      方法一：二分查找
     </span>
   </a>
   
@@ -91708,8 +91708,8 @@
 <strong>输入：</strong>n = 5, bad = 4
 <strong>输出：</strong>4
 <strong>解释：</strong>
-调用 isBadVersion(3) -&gt; false 
-调用 isBadVersion(5)&nbsp;-&gt; true 
+调用 isBadVersion(3) -&gt; false
+调用 isBadVersion(5)&nbsp;-&gt; true
 调用 isBadVersion(4)&nbsp;-&gt; true
 所以，4 是第一个错误的版本。
 </pre>
@@ -91734,8 +91734,12 @@
 <h2 id="_2">解法</h2>
 <!-- solution:start -->
 
-<h3 id="_3">方法一</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">Rust</label><label for="__tabbed_1_6">JavaScript</label></div>
+<h3 id="_3">方法一：二分查找</h3>
+<p>我们定义二分查找的左边界 <span class="arithmatex">\(l = 1\)</span>，右边界 <span class="arithmatex">\(r = n\)</span>。</p>
+<p>当 <span class="arithmatex">\(l &lt; r\)</span> 时，我们计算中间位置 <span class="arithmatex">\(\textit{mid} = \left\lfloor \frac{l + r}{2} \right\rfloor\)</span>，然后调用 <code>isBadVersion(mid)</code> 接口，如果返回 <span class="arithmatex">\(\textit{true}\)</span>，则说明第一个错误的版本在 <span class="arithmatex">\([l, \textit{mid}]\)</span> 之间，我们令 <span class="arithmatex">\(r = \textit{mid}\)</span>；否则第一个错误的版本在 <span class="arithmatex">\([\textit{mid} + 1, r]\)</span> 之间，我们令 <span class="arithmatex">\(l = \textit{mid} + 1\)</span>。</p>
+<p>最终返回 <span class="arithmatex">\(l\)</span> 即可。</p>
+<p>时间复杂度 <span class="arithmatex">\(O(\log n)\)</span>，空间复杂度 <span class="arithmatex">\(O(1)\)</span>。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">TypeScript</label><label for="__tabbed_1_6">Rust</label><label for="__tabbed_1_7">JavaScript</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -91751,32 +91755,20 @@
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># The isBadVersion API is already defined for you.</span>
-<span class="c1"># @param version, an integer</span>
-<span class="c1"># @return an integer</span>
-<span class="c1"># def isBadVersion(version):</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># The isBadVersion API is already defined for you.</span>
+<span class="c1"># def isBadVersion(version: int) -&gt; bool:</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">firstBadVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :type n: int</span>
-<span class="sd">        :rtype: int</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">firstBadVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span>
+        <span class="k">while</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">isBadVersion</span><span class="p">(</span><span class="n">mid</span><span class="p">):</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">left</span>
+                <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">l</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <div class="tabbed-block">
@@ -91801,16 +91793,16 @@
 
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">VersionControl</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">firstBadVersion</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isBadVersion</span><span class="p">(</span><span class="n">mid</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
+<span class="w">                </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
@@ -91839,16 +91831,16 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">firstBadVersion</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isBadVersion</span><span class="p">(</span><span class="n">mid</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
+<span class="w">                </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
@@ -91882,16 +91874,16 @@
 <span class="cm"> */</span>
 
 <span class="kd">func</span><span class="w"> </span><span class="nx">firstBadVersion</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">left</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">mid</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">(</span><span class="nx">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">right</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nx">l</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mid</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">isBadVersion</span><span class="p">(</span><span class="nx">mid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">right</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span>
+<span class="w">            </span><span class="nx">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span>
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">left</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="nx">l</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">l</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 </div>
@@ -91914,23 +91906,65 @@
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// The API isBadVersion is defined for you.</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * The knows API is defined in the parent class Relation.</span>
+<span class="cm"> * isBadVersion(version: number): boolean {</span>
+<span class="cm"> *     ...</span>
+<span class="cm"> * };</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">solution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">isBadVersion</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">l</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">];</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isBadVersion</span><span class="p">(</span><span class="nx">mid</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mid</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">l</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// The API isBadVersion is defined for you.</span>
 <span class="c1">// isBadVersion(version:i32)-&gt; bool;</span>
 <span class="c1">// to call it use self.isBadVersion(version)</span>
 
 <span class="k">impl</span><span class="w"> </span><span class="n">Solution</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">first_bad_version</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">isBadVersion</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
+<span class="w">                </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">left</span>
+<span class="w">        </span><span class="n">l</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
@@ -91967,8 +92001,7 @@
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/**</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/**</span>
 <span class="cm"> * Definition for isBadVersion()</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param {integer} version number</span>
@@ -91988,17 +92021,16 @@
 <span class="cm">     * @return {integer} The first bad version</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">right</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">l</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">];</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isBadVersion</span><span class="p">(</span><span class="nx">mid</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mid</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mid</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">l</span><span class="p">;</span>
 <span class="w">    </span><span class="p">};</span>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
