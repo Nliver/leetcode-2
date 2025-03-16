@@ -196,7 +196,7 @@
           </li>
         
           <li class="md-select__item">
-            <a href="/en/lc/1836/" hreflang="zh" class="md-select__link">
+            <a href="/lc/1836/" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
@@ -449,6 +449,22 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -84129,6 +84145,182 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3483/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3483. Unique 3-Digit Even Numbers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3484/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3484. Design Spreadsheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3485/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3485. Longest Common Prefix of K Strings After Removal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3486/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3486. Longest Special Path II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3487/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3487. Maximum Unique Subarray Sum After Deletion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3488/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3488. Closest Equal Element Queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3489/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3489. Zero Array Transformation IV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3490/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3490. Count Beautiful Numbers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -86905,36 +87097,56 @@
 <p>Return <em>the linked list after the deletions.</em></p>
 
 <p>&nbsp;</p>
+
 <p><strong class="example">Example 1:</strong></p>
+
 <p><a class="glightbox" href="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1836.Remove%20Duplicates%20From%20an%20Unsorted%20Linked%20List/images/tmp-linked-list.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1836.Remove%20Duplicates%20From%20an%20Unsorted%20Linked%20List/images/tmp-linked-list.jpg" style="width: 422px; height: 222px;" /></a></p>
 <pre>
+
 <strong>Input:</strong> head = [1,2,3,2]
+
 <strong>Output:</strong> [1,3]
+
 <strong>Explanation:</strong> 2 appears twice in the linked list, so all 2&#39;s should be deleted. After deleting all 2&#39;s, we are left with [1,3].
+
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
+
 <p><a class="glightbox" href="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1836.Remove%20Duplicates%20From%20an%20Unsorted%20Linked%20List/images/tmp-linked-list-1.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1836.Remove%20Duplicates%20From%20an%20Unsorted%20Linked%20List/images/tmp-linked-list-1.jpg" style="width: 422px; height: 151px;" /></a></p>
 <pre>
+
 <strong>Input:</strong> head = [2,1,1,2]
+
 <strong>Output:</strong> []
+
 <strong>Explanation:</strong> 2 and 1 both appear twice. All the elements should be deleted.
+
 </pre>
 
 <p><strong class="example">Example 3:</strong></p>
+
 <p><a class="glightbox" href="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1836.Remove%20Duplicates%20From%20an%20Unsorted%20Linked%20List/images/tmp-linked-list-2.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1836.Remove%20Duplicates%20From%20an%20Unsorted%20Linked%20List/images/tmp-linked-list-2.jpg" style="width: 500px; height: 142px;" /></a></p>
 <pre>
+
 <strong>Input:</strong> head = [3,2,2,1,3,2,4]
+
 <strong>Output:</strong> [1,4]
+
 <strong>Explanation: </strong>3 appears twice and 2 appears three times. After deleting all 3&#39;s and 2&#39;s, we are left with [1,4].
+
 </pre>
 
 <p>&nbsp;</p>
+
 <p><strong>Constraints:</strong></p>
 
 <ul>
+
     <li>The number of nodes in the list is in the range&nbsp;<code>[1, 10<sup>5</sup>]</code></li>
+
     <li><code>1 &lt;= Node.val &lt;= 10<sup>5</sup></code></li>
+
 </ul>
 
 <!-- description:end -->
