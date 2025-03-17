@@ -50529,18 +50529,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#solution-1" class="md-nav__link">
+  <a href="#solution-1-dynamic-programming" class="md-nav__link">
     <span class="md-ellipsis">
-      Solution 1
+      Solution 1: Dynamic Programming
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#solution-2" class="md-nav__link">
+  <a href="#solution-2-dynamic-programming-space-optimization" class="md-nav__link">
     <span class="md-ellipsis">
-      Solution 2
+      Solution 2: Dynamic Programming (Space Optimization)
     </span>
   </a>
   
@@ -87157,7 +87157,24 @@
 <h2 id="solutions">Solutions</h2>
 <!-- solution:start -->
 
-<h3 id="solution-1">Solution 1</h3>
+<h3 id="solution-1-dynamic-programming">Solution 1: Dynamic Programming</h3>
+<p>We define <span class="arithmatex">\(f[i][j]\)</span> to represent the number of special subsequences ending with <span class="arithmatex">\(j\)</span> among the first <span class="arithmatex">\(i+1\)</span> elements. Initially, <span class="arithmatex">\(f[i][j]=0\)</span>, and if <span class="arithmatex">\(nums[0]=0\)</span>, then <span class="arithmatex">\(f[0][0]=1\)</span>.</p>
+<p>For <span class="arithmatex">\(i \gt 0\)</span>, we consider the value of <span class="arithmatex">\(nums[i]\)</span>:</p>
+<p>If <span class="arithmatex">\(nums[i] = 0\)</span>: If we do not choose <span class="arithmatex">\(nums[i]\)</span>, then <span class="arithmatex">\(f[i][0] = f[i-1][0]\)</span>; if we choose <span class="arithmatex">\(nums[i]\)</span>, then <span class="arithmatex">\(f[i][0]=f[i-1][0]+1\)</span>, because we can add a <span class="arithmatex">\(0\)</span> to the end of any special subsequence ending with <span class="arithmatex">\(0\)</span> to get a new special subsequence, or we can use <span class="arithmatex">\(nums[i]\)</span> alone as a special subsequence. Therefore, <span class="arithmatex">\(f[i][0] = 2 \times f[i - 1][0] + 1\)</span>. The rest of <span class="arithmatex">\(f[i][j]\)</span> is equal to <span class="arithmatex">\(f[i-1][j]\)</span>.</p>
+<p>If <span class="arithmatex">\(nums[i] = 1\)</span>: If we do not choose <span class="arithmatex">\(nums[i]\)</span>, then <span class="arithmatex">\(f[i][1] = f[i-1][1]\)</span>; if we choose <span class="arithmatex">\(nums[i]\)</span>, then <span class="arithmatex">\(f[i][1]=f[i-1][1]+f[i-1][0]\)</span>, because we can add a <span class="arithmatex">\(1\)</span> to the end of any special subsequence ending with <span class="arithmatex">\(0\)</span> or <span class="arithmatex">\(1\)</span> to get a new special subsequence. Therefore, <span class="arithmatex">\(f[i][1] = f[i-1][0] + 2 \times f[i - 1][1]\)</span>. The rest of <span class="arithmatex">\(f[i][j]\)</span> is equal to <span class="arithmatex">\(f[i-1][j]\)</span>.</p>
+<p>If <span class="arithmatex">\(nums[i] = 2\)</span>: If we do not choose <span class="arithmatex">\(nums[i]\)</span>, then <span class="arithmatex">\(f[i][2] = f[i-1][2]\)</span>; if we choose <span class="arithmatex">\(nums[i]\)</span>, then <span class="arithmatex">\(f[i][2]=f[i-1][2]+f[i-1][1]\)</span>, because we can add a <span class="arithmatex">\(2\)</span> to the end of any special subsequence ending with <span class="arithmatex">\(1\)</span> or <span class="arithmatex">\(2\)</span> to get a new special subsequence. Therefore, <span class="arithmatex">\(f[i][2] = f[i-1][1] + 2 \times f[i - 1][2]\)</span>. The rest of <span class="arithmatex">\(f[i][j]\)</span> is equal to <span class="arithmatex">\(f[i-1][j]\)</span>.</p>
+<p>In summary, we can get the following state transition equations:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+f[i][0] &amp;= 2 \times f[i - 1][0] + 1, \quad nums[i] = 0 \\
+f[i][1] &amp;= f[i-1][0] + 2 \times f[i - 1][1], \quad nums[i] = 1 \\
+f[i][2] &amp;= f[i-1][1] + 2 \times f[i - 1][2], \quad nums[i] = 2 \\
+f[i][j] &amp;= f[i-1][j], \quad nums[i] \neq j
+\end{aligned}
+\]</div>
+<p>The final answer is <span class="arithmatex">\(f[n-1][2]\)</span>.</p>
+<p>The time complexity is <span class="arithmatex">\(O(n)\)</span>, and the space complexity is <span class="arithmatex">\(O(n)\)</span>. Where <span class="arithmatex">\(n\)</span> is the length of the array <span class="arithmatex">\(nums\)</span>.</p>
+<p>Similar code found with 1 license type</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">TypeScript</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -87412,7 +87429,10 @@
 
 <!-- solution:start -->
 
-<h3 id="solution-2">Solution 2</h3>
+<h3 id="solution-2-dynamic-programming-space-optimization">Solution 2: Dynamic Programming (Space Optimization)</h3>
+<p>We notice that in the above state transition equations, the value of <span class="arithmatex">\(f[i][j]\)</span> is only related to <span class="arithmatex">\(f[i-1][j]\)</span>. Therefore, we can remove the first dimension and optimize the space complexity to <span class="arithmatex">\(O(1)\)</span>.</p>
+<p>We can use an array <span class="arithmatex">\(f\)</span> of length 3 to represent the number of special subsequences ending with 0, 1, and 2, respectively. For each element in the array, we update the array <span class="arithmatex">\(f\)</span> according to the value of the current element.</p>
+<p>The time complexity is <span class="arithmatex">\(O(n)\)</span>, and the space complexity is <span class="arithmatex">\(O(1)\)</span>. Where <span class="arithmatex">\(n\)</span> is the length of the array <span class="arithmatex">\(nums\)</span>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python3</label><label for="__tabbed_2_2">Java</label><label for="__tabbed_2_3">C++</label><label for="__tabbed_2_4">Go</label><label for="__tabbed_2_5">TypeScript</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
