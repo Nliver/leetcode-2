@@ -64727,9 +64727,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#solution-1" class="md-nav__link">
+  <a href="#solution-1-greedy" class="md-nav__link">
     <span class="md-ellipsis">
-      Solution 1
+      Solution 1: Greedy
     </span>
   </a>
   
@@ -87256,7 +87256,15 @@ It can be proven that 3 is the maximum possible sum.
 <h2 id="solutions">Solutions</h2>
 <!-- solution:start -->
 
-<h3 id="solution-1">Solution 1</h3>
+<h3 id="solution-1-greedy">Solution 1: Greedy</h3>
+<p>According to the problem description, we should take as many items marked as <span class="arithmatex">\(1\)</span> as possible, then take items marked as <span class="arithmatex">\(0\)</span>, and finally take items marked as <span class="arithmatex">\(-1\)</span>.</p>
+<p>Thus:</p>
+<ul>
+<li>If the number of items marked as <span class="arithmatex">\(1\)</span> in the bag is greater than or equal to <span class="arithmatex">\(k\)</span>, we take <span class="arithmatex">\(k\)</span> items, and the sum of the numbers is <span class="arithmatex">\(k\)</span>.</li>
+<li>If the number of items marked as <span class="arithmatex">\(1\)</span> is less than <span class="arithmatex">\(k\)</span>, we take <span class="arithmatex">\(\textit{numOnes}\)</span> items, resulting in a sum of <span class="arithmatex">\(\textit{numOnes}\)</span>. If the number of items marked as <span class="arithmatex">\(0\)</span> is greater than or equal to <span class="arithmatex">\(k - \textit{numOnes}\)</span>, we take <span class="arithmatex">\(k - \textit{numOnes}\)</span> more items, keeping the sum at <span class="arithmatex">\(\textit{numOnes}\)</span>.</li>
+<li>Otherwise, we take <span class="arithmatex">\(k - \textit{numOnes} - \textit{numZeros}\)</span> items from those marked as <span class="arithmatex">\(-1\)</span>, resulting in a sum of <span class="arithmatex">\(\textit{numOnes} - (k - \textit{numOnes} - \textit{numZeros})\)</span>.</li>
+</ul>
+<p>The time complexity is <span class="arithmatex">\(O(1)\)</span>, and the space complexity is <span class="arithmatex">\(O(1)\)</span>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">TypeScript</label><label for="__tabbed_1_6">Rust</label><label for="__tabbed_1_7">C#</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
