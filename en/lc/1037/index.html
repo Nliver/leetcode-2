@@ -30345,9 +30345,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#solution-1" class="md-nav__link">
+  <a href="#solution-1-slope-comparison" class="md-nav__link">
     <span class="md-ellipsis">
-      Solution 1
+      Solution 1: Slope Comparison
     </span>
   </a>
   
@@ -87291,7 +87291,15 @@
 <h2 id="solutions">Solutions</h2>
 <!-- solution:start -->
 
-<h3 id="solution-1">Solution 1</h3>
+<h3 id="solution-1-slope-comparison">Solution 1: Slope Comparison</h3>
+<p>Let the three points be <span class="arithmatex">\((x_1, y_1)\)</span>, <span class="arithmatex">\((x_2, y_2)\)</span>, and <span class="arithmatex">\((x_3, y_3)\)</span>. The formula for calculating the slope between two points is <span class="arithmatex">\(\frac{y_2 - y_1}{x_2 - x_1}\)</span>.</p>
+<p>To ensure that the three points are not collinear, the condition <span class="arithmatex">\(\frac{y_2 - y_1}{x_2 - x_1} \neq \frac{y_3 - y_2}{x_3 - x_2}\)</span> must be satisfied. By transforming the equation, we get <span class="arithmatex">\((y_2 - y_1) \cdot (x_3 - x_2) \neq (y_3 - y_2) \cdot (x_2 - x_1)\)</span>.</p>
+<p>Note:</p>
+<ol>
+<li>When the slope between two points does not exist, i.e., <span class="arithmatex">\(x_1 = x_2\)</span>, the transformed equation still holds.</li>
+<li>If there are precision issues with division in slope comparison, it can be converted to multiplication.</li>
+</ol>
+<p>Time complexity is <span class="arithmatex">\(O(1)\)</span>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">TypeScript</label><label for="__tabbed_1_6">Rust</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
