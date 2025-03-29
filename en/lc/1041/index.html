@@ -30433,9 +30433,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#solution-1" class="md-nav__link">
+  <a href="#solution-1-simulation" class="md-nav__link">
     <span class="md-ellipsis">
-      Solution 1
+      Solution 1: Simulation
     </span>
   </a>
   
@@ -87345,7 +87345,19 @@ Based on that, we return true.
 <h2 id="solutions">Solutions</h2>
 <!-- solution:start -->
 
-<h3 id="solution-1">Solution 1</h3>
+<h3 id="solution-1-simulation">Solution 1: Simulation</h3>
+<p>We can simulate the robot's movement. Use a variable <span class="arithmatex">\(k\)</span> to represent the robot's direction, initialized to <span class="arithmatex">\(0\)</span>, which means the robot is facing north. The variable <span class="arithmatex">\(k\)</span> can take values in the range <span class="arithmatex">\([0, 3]\)</span>, representing the robot facing north, west, south, and east, respectively. Additionally, we use an array <span class="arithmatex">\(dist\)</span> of length <span class="arithmatex">\(4\)</span> to record the distance the robot travels in the four directions, initialized to <span class="arithmatex">\([0, 0, 0, 0]\)</span>.</p>
+<p>Traverse the instruction string <span class="arithmatex">\(\textit{instructions}\)</span>. If the current instruction is <code>'L'</code>, the robot turns west, i.e., <span class="arithmatex">\(k = (k + 1) \bmod 4\)</span>; if the instruction is <code>'R'</code>, the robot turns east, i.e., <span class="arithmatex">\(k = (k + 3) \bmod 4\)</span>; otherwise, the robot moves one step in the current direction, i.e., <span class="arithmatex">\(dist[k]++\)</span>.</p>
+<p>If the given instruction string <span class="arithmatex">\(\textit{instructions}\)</span> is executed once and the robot returns to the origin, i.e., <span class="arithmatex">\(dist[0] = dist[2]\)</span> and <span class="arithmatex">\(dist[1] = dist[3]\)</span>, then the robot will definitely enter a loop. This is because no matter how many times the instructions are repeated, the robot always returns to the origin, so it must enter a loop.</p>
+<p>If the given instruction string <span class="arithmatex">\(\textit{instructions}\)</span> is executed once and the robot does not return to the origin, suppose the robot is at <span class="arithmatex">\((x, y)\)</span> and its direction is <span class="arithmatex">\(k\)</span>.</p>
+<ul>
+<li>If <span class="arithmatex">\(k=0\)</span>, i.e., the robot is facing north, then after executing the instructions a second time, the coordinate change is <span class="arithmatex">\((x, y)\)</span>; after executing the instructions a third time, the coordinate change is still <span class="arithmatex">\((x, y)\)</span>... Accumulating these changes, the robot will eventually reach <span class="arithmatex">\((n \times x, n \times y)\)</span>, where <span class="arithmatex">\(n\)</span> is a positive integer. Since the robot does not return to the origin, i.e., <span class="arithmatex">\(x \neq 0\)</span> or <span class="arithmatex">\(y \neq 0\)</span>, it follows that <span class="arithmatex">\(n \times x \neq 0\)</span> or <span class="arithmatex">\(n \times y \neq 0\)</span>, so the robot will not enter a loop;</li>
+<li>If <span class="arithmatex">\(k=1\)</span>, i.e., the robot is facing west, then after executing the instructions a second time, the coordinate change is <span class="arithmatex">\((-y, x)\)</span>; after executing the instructions a third time, the coordinate change is <span class="arithmatex">\((-x, -y)\)</span>; after executing the instructions a fourth time, the coordinate change is <span class="arithmatex">\((y, -x)\)</span>. Accumulating these coordinate changes, we find that the robot will eventually return to the origin <span class="arithmatex">\((0, 0)\)</span>;</li>
+<li>If <span class="arithmatex">\(k=2\)</span>, i.e., the robot is facing south, then after executing the instructions a second time, the coordinate change is <span class="arithmatex">\((-x, -y)\)</span>. Accumulating these two coordinate changes, we find that the robot will eventually return to the origin <span class="arithmatex">\((0, 0)\)</span>;</li>
+<li>If <span class="arithmatex">\(k=3\)</span>, i.e., the robot is facing east, then after executing the instructions a second time, the coordinate change is <span class="arithmatex">\((y, -x)\)</span>; after executing the instructions a third time, the coordinate change is <span class="arithmatex">\((-x, -y)\)</span>; after executing the instructions a fourth time, the coordinate change is <span class="arithmatex">\((-y, x)\)</span>. Accumulating these coordinate changes, we find that the robot will eventually return to the origin <span class="arithmatex">\((0, 0)\)</span>.</li>
+</ul>
+<p>In conclusion, if the given instruction string <span class="arithmatex">\(\textit{instructions}\)</span> is executed once and the robot returns to the origin, or if the robot's direction is different from the initial direction, then the robot will definitely enter a loop.</p>
+<p>The time complexity is <span class="arithmatex">\(O(n)\)</span>, and the space complexity is <span class="arithmatex">\(O(1)\)</span>, where <span class="arithmatex">\(n\)</span> is the length of the instruction string <span class="arithmatex">\(\textit{instructions}\)</span>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">TypeScript</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
