@@ -84677,7 +84677,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      方法一
+      方法一：枚举回文中点 + 动态规划
     </span>
   </a>
   
@@ -92304,7 +92304,18 @@
 <h2 id="_2">解法</h2>
 <!-- solution:start -->
 
-<h3 id="_3">方法一</h3>
+<h3 id="_3">方法一：枚举回文中点 + 动态规划</h3>
+<p>根据题目描述，连接后的回文串，可以只由字符串 <span class="arithmatex">\(s\)</span> 组成，也可以只由字符串 <span class="arithmatex">\(t\)</span> 组成，也可以由字符串 <span class="arithmatex">\(s\)</span> 和字符串 <span class="arithmatex">\(t\)</span> 组成，并且还可能在字符串 <span class="arithmatex">\(s\)</span> 或 <span class="arithmatex">\(t\)</span> 中多出一部分回文子串。</p>
+<p>因此，我们先将字符串 <span class="arithmatex">\(t\)</span> 反转，然后预处理出数组 <span class="arithmatex">\(\textit{g1}\)</span> 和 <span class="arithmatex">\(\textit{g2}\)</span>，其中 <span class="arithmatex">\(\textit{g1}[i]\)</span> 表示在字符串 <span class="arithmatex">\(s\)</span> 中以下标 <span class="arithmatex">\(i\)</span> 开始的最长回文子串长度，而 <span class="arithmatex">\(\textit{g2}[i]\)</span> 表示在字符串 <span class="arithmatex">\(t\)</span> 中以下标 <span class="arithmatex">\(i\)</span> 开始的最长回文子串长度。</p>
+<p>那么我们可以初始化答案 <span class="arithmatex">\(\textit{ans}\)</span> 为 <span class="arithmatex">\(\textit{g1}\)</span> 和 <span class="arithmatex">\(\textit{g2}\)</span> 中的最大值。</p>
+<p>接下来，我们定义 <span class="arithmatex">\(\textit{f}[i][j]\)</span> 表示以字符串 <span class="arithmatex">\(s\)</span> 的第 <span class="arithmatex">\(i\)</span> 个字符结尾，以字符串 <span class="arithmatex">\(t\)</span> 的第 <span class="arithmatex">\(j\)</span> 个字符结尾的回文子串的长度。</p>
+<p>对于 <span class="arithmatex">\(\textit{f}[i][j]\)</span>，如果 <span class="arithmatex">\(s[i - 1]\)</span> 等于 <span class="arithmatex">\(t[j - 1]\)</span>，那么有 <span class="arithmatex">\(\textit{f}[i][j] = \textit{f}[i - 1][j - 1] + 1\)</span>。然后，我们更新答案：</p>
+<p>$$
+\textit{ans} = \max(\textit{ans}, \textit{f}[i][j] \times 2 + (0 \text{ if } i \geq m \text{ else } \textit{g1}[i])) \</p>
+<p>\textit{ans} = \max(\textit{ans}, \textit{f}[i][j] \times 2 + (0 \text{ if } j \geq n \text{ else } \textit{g2}[j])) \
+$$</p>
+<p>最后，我们返回答案 <span class="arithmatex">\(\textit{ans}\)</span> 即可。</p>
+<p>时间复杂度 <span class="arithmatex">\(O(m \times (m + n))\)</span>，空间复杂度 <span class="arithmatex">\(O(m \times n)\)</span>。其中 <span class="arithmatex">\(m\)</span> 和 <span class="arithmatex">\(n\)</span> 分别是字符串 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(t\)</span> 的长度。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python3</label><label for="__tabbed_1_2">Java</label><label for="__tabbed_1_3">C++</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">TypeScript</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
