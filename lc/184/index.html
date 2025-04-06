@@ -96313,7 +96313,7 @@ Department 表:
 
 <h3 id="_3">方法一：等值连接 + 子查询</h3>
 <p>我们可以使用等值连接，将 <code>Employee</code> 表和 <code>Department</code> 表连接起来，连接条件为 <code>Employee.departmentId = Department.id</code>，然后使用子查询来找到每个部门的最高工资，最后使用 <code>WHERE</code> 子句来筛选出每个部门中薪资最高的员工。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">MySQL</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">MySQL</label><label for="__tabbed_1_2">Python3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -96337,6 +96337,48 @@ Department 表:
 <span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span>
 <span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">    </span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">department_highest_salary</span><span class="p">(</span>
+    <span class="n">employee</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">department</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="c1"># Merge the two tables on departmentId and department id</span>
+    <span class="n">merged</span> <span class="o">=</span> <span class="n">employee</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">department</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;departmentId&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Find the maximum salary for each department</span>
+    <span class="n">max_salaries</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;departmentId&#39;</span><span class="p">)[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Filter employees who have the highest salary in their department</span>
+    <span class="n">top_earners</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[</span><span class="n">merged</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_salaries</span><span class="p">]</span>
+
+    <span class="c1"># Select required columns and rename them</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">top_earners</span><span class="p">[[</span><span class="s1">&#39;name_y&#39;</span><span class="p">,</span> <span class="s1">&#39;name_x&#39;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Department&#39;</span><span class="p">,</span> <span class="s1">&#39;Employee&#39;</span><span class="p">,</span> <span class="s1">&#39;Salary&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
 </div>
 </div>
@@ -96420,6 +96462,11 @@ Department 表:
     
     <nav>
       
+        <a href="https://github.com/iamAntimPal" class="md-author" title="@iamAntimPal">
+          
+          <img src="https://avatars.githubusercontent.com/u/134076504?v=4&size=72" alt="iamAntimPal">
+        </a>
+      
         <a href="https://github.com/yanglbme" class="md-author" title="@yanglbme">
           
           <img src="https://avatars.githubusercontent.com/u/21008209?v=4&size=72" alt="yanglbme">
@@ -96435,12 +96482,13 @@ Department 表:
           <img src="https://avatars.githubusercontent.com/u/70502828?v=4&size=72" alt="YangFong">
         </a>
       
-        <a href="https://github.com/LjyYano" class="md-author" title="@LjyYano">
-          
-          <img src="https://avatars.githubusercontent.com/u/9548512?v=4&size=72" alt="LjyYano">
-        </a>
       
       
+        
+          <a href="https://github.com/doocs/leetcode/blob/main/solution/0100-0199/0184.Department%20Highest%20Salary/README.md" class="md-author md-author--more">
+            +1
+          </a>
+        
       
     </nav>
   </span>
